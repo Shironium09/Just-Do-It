@@ -7,7 +7,7 @@ export const App = () => {
 
   return (
     <div className="relative min-h-screen w-full">
-      <SpaceBackground speed={0.05} starCount={100}/>
+      <SpaceBackground speed={0.06} starCount={100}/>
       <div className="relative z-10">
         <Landing/>
         <Upload/>
