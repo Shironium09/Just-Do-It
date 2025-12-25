@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Submit } from './submit'
 
 export const  Upload = () => {
 
@@ -21,14 +22,15 @@ export const  Upload = () => {
 
     return(
         <>
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center mb-10">
             <div className="w-[85%] h-auto">
-                <h1 className="text-center text-white select-none text-[2rem] m-10">Let's Get Productive!</h1>
-                <div className="flex justify-center items-center bg-black">
-                    <div className="w-[40%] flex justify-center">
+                <h1 className="text-center text-white select-none text-[2rem] mt-10">Let's Get Productive!</h1>
+                <div className="flex flex-col justify-center items-center">
+                    <hr className="w-[50%] border-white border-1 m-5"/>
+                    <div className="w-full flex justify-center select-none">
                         <label 
                             htmlFor="dropzone-file" 
-                            className="flex flex-col items-center justify-center w-80 h-52 border-2 border-dashed border-white rounded-lg cursor-pointer bg-zinc-900 hover:bg-zinc-800 hover:border-emerald-500 transition-all duration-300"
+                            className="flex flex-col items-center justify-center w-100 h-50 border-2 border-dashed border-white rounded-lg cursor-pointer bg-zinc-900 hover:bg-zinc-800 hover:border-emerald-500 transition-all duration-300"
                         >
                             <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                 {selectedFile ? (
@@ -47,7 +49,7 @@ export const  Upload = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                                         </svg>
                                         <p className="mb-2 text-sm font-semibold text-white">
-                                            Upload Feedback Data
+                                            Upload Your Schedule Here
                                         </p>
                                         <p className="text-xs text-slate-400">
                                             Click to browse files
@@ -64,15 +66,15 @@ export const  Upload = () => {
                             />
                         </label>
                     </div>
-                    <div className="w-[60%]">
-                        <input
-                            type="text"
-                            placeholder="Enter additional context..."
+                    <div className="w-full select-none flex justify-center mt-5">
+                        <textarea
+                            placeholder="Enter additional context... (What are the subjects, hardest subjects, etc.)"
                             value={contextText}
-                            onChange={(e) =>  setContextText(e.target.value)}
-                            className="border w-[50%] h-full text-white p-1 rounded-lg"
+                            onChange={(e) => setContextText(e.target.value)}
+                            className="border w-100 h-32 text-white p-3 rounded-lg bg-zinc-900 border-white focus:border-emerald-500 focus:outline-none resize-none"
                         />
                     </div>
+                    <Submit/>
                 </div>
             </div>
         </div>
