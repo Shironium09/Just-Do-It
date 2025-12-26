@@ -5,6 +5,7 @@ export const  Upload = () => {
 
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [contextText, setContextText] = useState<string>("");
+    const [AIresult, setAIResult] = useState<string>("");
 
     const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -19,6 +20,39 @@ export const  Upload = () => {
         setSelectedFile(file);
 
     };
+
+    const handleSubmit = async () => {
+
+        if(!selectedFile){
+
+            alert("Please upload a file first!");
+            return;
+
+        }
+
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+        formData.append('context', contextText);
+
+        try{
+
+            const response = await fetch('http://localhost:3000/analyze', {
+
+                method: 'POST',
+                body: formData,
+
+            });
+
+            const result = await response.json();
+            setAIResult(result.result);
+
+        }catch(error){
+
+            console.log("Error Submmitting: ", error);
+
+        }
+
+    }
 
     return(
         <>
@@ -74,7 +108,18 @@ export const  Upload = () => {
                             className="border w-100 h-32 text-white p-3 rounded-lg bg-zinc-900 border-white focus:border-emerald-500 focus:outline-none resize-none"
                         />
                     </div>
-                    <Submit/>
+                    <Submit
+                        file={selectedFile}
+                        context={contextText}
+                        onClick={handleSubmit}
+                    />
+                    {AIresult && (
+                        <div>
+                            <div>
+                                <h1 className="text-white">{AIresult}</h1>
+                            </div>
+                        </div>   
+                    )}
                 </div>
             </div>
         </div>
