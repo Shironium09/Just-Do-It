@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react'
 
-export const Submit = () => {
+interface SubmitProps{
+
+    file: File | null;
+    context: string;
+    onClick: () => void;
+
+}
+
+export const Submit = ({file, context, onClick}: SubmitProps) => {
 
     const [submitButton, updateSubmitButton] = useState<boolean>(false);
 
