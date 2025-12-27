@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Submit } from './submit'
 
 export const  Upload = () => {
@@ -6,6 +6,7 @@ export const  Upload = () => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [contextText, setContextText] = useState<string>("");
     const [AIresult, setAIResult] = useState<string>("");
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -30,6 +31,9 @@ export const  Upload = () => {
 
         }
 
+        setIsLoading(true);
+        setAIResult("");
+
         const formData = new FormData();
         formData.append('file', selectedFile);
         formData.append('context', contextText);
@@ -45,6 +49,7 @@ export const  Upload = () => {
 
             const result = await response.json();
             setAIResult(result.result);
+            setIsLoading(false);
 
         }catch(error){
 
@@ -112,10 +117,11 @@ export const  Upload = () => {
                         file={selectedFile}
                         context={contextText}
                         onClick={handleSubmit}
+                        isLoading={isLoading}
                     />
                     {AIresult && (
-                        <div>
-                            <div>
+                        <div className="">
+                            <div className="">
                                 <h1 className="text-white">{AIresult}</h1>
                             </div>
                         </div>   
