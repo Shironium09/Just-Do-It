@@ -16,7 +16,26 @@ const API_TOKEN = process.env.CF_API_TOKEN;
 
 const MODEL = "@cf/llava-hf/llava-1.5-7b-hf";
 
-const behavior = "You are an expert in time management. In here, you are given an image (the user's schedule), and some context that they will be giving. Given those, make a schedule for the user's entire week. Make it so that the schedule is as effective and efficient as possible and will be very helpful for what the user's context. Make it simpler like for example, Monday: 8-9: Ready for school, 9-10: Class, or something like that. Make sure that it is understandable, and very helpful for the user. In scheduling, also take into account the priority of the subject and balance it out so that the whole thing would be as effective and efficient. Also, remove any greetings and stuff, just go ahead and generate a text for the schedule, and a little and slight explanation to why the schedule is as such. Also, please format it properly, like for example: Monday: (newline) 6-7:30: Something (then another new line), essential, make a newline every after daya and every after time and schedule. This is the context:"
+const behavior = `You are an expert in time management.
+Analyze the user's schedule image and context.
+Generate a highly efficient weekly schedule.
+
+IMPORTANT FORMATTING RULES:
+1. Start each day on a new line with the Day Name followed by a colon.
+2. Put every single activity on its own new line.
+3. Do not use asterisks (*) or bullet points.
+4. Add a blank line between days.
+
+Example Format:
+Monday:
+08:00 - 09:00: Activity A
+09:00 - 10:00: Activity B
+
+Tuesday:
+08:00 - 09:00: Activity C
+...
+`;
+
 
 app.post('/analyze', upload.single('file'), async (req, res) => {
 

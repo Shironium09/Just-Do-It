@@ -120,11 +120,14 @@ export const  Upload = () => {
                         isLoading={isLoading}
                     />
                     {AIresult && (
-                        <div className="">
-                            <div className="">
-                                <h1 className="text-white">{AIresult}</h1>
+                        <div className="w-full mt-10 mb-10 p-6 bg-zinc-900/80 border border-emerald-500 rounded-xl shadow-lg animate-fade-in">
+                            <h2 className="text-xl font-bold mb-4 text-emerald-400 border-b border-zinc-700 pb-2">
+                                Your Optimized Schedule
+                            </h2>
+                            <div className="text-white whitespace-pre-wrap font-mono leading-relaxed">
+                                {AIresult}
                             </div>
-                        </div>   
+                        </div>  
                     )}
                 </div>
             </div>
